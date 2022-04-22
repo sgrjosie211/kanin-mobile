@@ -1,17 +1,18 @@
+
 /** @jsxImportSource @emotion/react */
 
-import React from 'react';
-import clsx from 'clsx';
-import { css, useTheme } from '@emotion/react';
-import { Theme } from '../../styles/themes';
+import React from 'react'
+import clsx from 'clsx'
+import { css, useTheme } from '@emotion/react'
+import { Theme } from '../../constants/theme'
 
 export type TimelineItemProps = {
-  children: React.ReactNode;
-  icon?: React.ReactNode;
-  bordercolor?: string;
-  color?: string;
-  co?: ((theme: Theme) => React.CSSProperties) | React.CSSProperties;
-};
+  children: React.ReactNode
+  icon?: React.ReactNode
+  bordercolor?: string
+  color?: string
+  co?: ((theme: Theme) => React.CSSProperties) | React.CSSProperties
+}
 
 export const TimelineItem = ({
   icon,
@@ -22,7 +23,7 @@ export const TimelineItem = ({
   className,
   ...props
 }: TimelineItemProps & React.ComponentPropsWithoutRef<'div'>) => {
-  const theme = useTheme() as Theme;
+  const theme = useTheme() as Theme
   const styles = css({
     display: 'block',
     height: '100%',
@@ -46,9 +47,10 @@ export const TimelineItem = ({
       height: '5em',
       '&::after': {
         left: '4px',
-        height: '100%',
+        top: '16px',
+        height: '40%',
         width: '1px',
-        opacity: '100%',
+        opacity: '100%'
       },
     },
     '&:last-child': {
@@ -68,11 +70,11 @@ export const TimelineItem = ({
     },
     '& .desc': {
       fontSize: '.8em',
-      color: color,
+      color: color
     },
     ...(typeof co == 'function' ? co(theme) : co),
-  });
-  const computedClassNames = clsx(className);
+  })
+  const computedClassNames = clsx(className)
   return (
     <div css={styles} className={computedClassNames} {...props}>
       <div className={`indicators indicator`}>
@@ -84,5 +86,5 @@ export const TimelineItem = ({
         </div>
       </li>
     </div>
-  );
-};
+  )
+}

@@ -1,25 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
-import { Theme } from '../../styles/themes';
-import clsx from 'clsx';
-import React, { ReactNode } from 'react';
-import { css, useTheme } from '@emotion/react';
-import { TimelineItemProps, TimelineItem } from './item';
+import { Theme } from '../../constants/theme'
+import clsx from 'clsx'
+import React, { ReactNode } from 'react'
+import { css, useTheme } from '@emotion/react'
+import { TimelineItemProps, TimelineItem } from './item'
 
 interface TimelineProps {
-  children: React.ReactNode;
-  co?: ((theme: Theme) => React.CSSProperties) | React.CSSProperties;
-  color?: string;
+  children: React.ReactNode
+  co?: ((theme: Theme) => React.CSSProperties) | React.CSSProperties
+  color?: string
 }
 
-const Timeline = ({
-  children,
-  co,
-  color,
-  className,
-  ...props
-}: TimelineProps & React.ComponentPropsWithoutRef<'div'>) => {
-  const theme = useTheme() as Theme;
+const Timeline = ({ children, co, color, className, ...props }: TimelineProps & React.ComponentPropsWithoutRef<'div'>) => {
+  const theme = useTheme() as Theme
   const styles = css({
     display: 'flex',
     alignItems: 'center',
@@ -34,7 +28,7 @@ const Timeline = ({
       // borderColor: 'gray',
       background: color,
       position: 'absolute',
-      outline: '10px solid white',
+     // outline: '10px solid white',
       left: -2.5,
       top: -6,
     },
@@ -43,27 +37,27 @@ const Timeline = ({
       top: '-7px',
       left: 1.5,
       fontSize: 12,
-      color: '#fff',
+      color: '#fff'
     },
     ...(typeof co == 'function' ? co(theme) : co),
-  });
+  })
   const nat = React.Children.map(children, (child, index) => {
     if (!React.isValidElement(child)) {
-      return child;
+      return child
     }
-    const props = child.props as TimelineItemProps;
+    const props = child.props as TimelineItemProps
     const icon = props.icon ?? (
       <label className={`la`}>
         <span className={`circle`} />
         <span className={`text-pos`}>{index + 1}</span>
       </label>
-    );
+    )
     return React.cloneElement(child, {
       icon,
-      bordercolor: color,
-    });
-  });
-  const computedClassNames = clsx(className);
+      bordercolor: color
+    })
+  })
+  const computedClassNames = clsx(className)
   return (
     // <Container>
     //   <ul className='timeline'>{children}</ul>
@@ -71,7 +65,7 @@ const Timeline = ({
     <div css={styles} className={computedClassNames} {...props}>
       <ul className='timeline'>{nat}</ul>
     </div>
-  );
-};
-Timeline.item = TimelineItem;
-export default Timeline;
+  )
+}
+Timeline.item = TimelineItem
+export default Timeline

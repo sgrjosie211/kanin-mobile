@@ -47,7 +47,8 @@ exports.TimelineItem = function (_a) {
             height: '5em',
             '&::after': {
                 left: '4px',
-                height: '100%',
+                top: '16px',
+                height: '40%',
                 width: '1px',
                 opacity: '100%'
             }

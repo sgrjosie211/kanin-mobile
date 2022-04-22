@@ -39,7 +39,7 @@ var Timeline = function (_a) {
             // borderColor: 'gray',
             background: color,
             position: 'absolute',
-            outline: '10px solid white',
+            // outline: '10px solid white',
             left: -2.5,
             top: -6
         }, '& .text-pos': {
